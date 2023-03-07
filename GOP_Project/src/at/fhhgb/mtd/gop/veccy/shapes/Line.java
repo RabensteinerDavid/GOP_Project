@@ -16,17 +16,13 @@ public class Line {
     public Rectangle boundingBox() {
         if ((x1 < x2) && (y1 > y2)) {
             return new Rectangle(x1, y2, x2 - x1, y2 - y1);
-        }
-        else if ((x1 > x2) && (y1 < y2)) {
+        } else if ((x1 > x2) && (y1 < y2)) {
             return new Rectangle(x2, y1, x2 - x1, y2 - y1);
-        }
-        else if ((x1 < x2) && (y1 < y2)) {
+        } else if ((x1 < x2) && (y1 < y2)) {
             return new Rectangle(x1, y1, x2 - x1, y2 - y1);
-        }
-        else if ((x1 > x2) && (y1 > y2)) {
+        } else if ((x1 > x2) && (y1 > y2)) {
             return new Rectangle(x2, y2, x2 - x1, y2 - y1);
-        }
-        else {
+        } else {
             return new Rectangle(x1, y1, x2 - x1, y2 - y1);
         }
     }

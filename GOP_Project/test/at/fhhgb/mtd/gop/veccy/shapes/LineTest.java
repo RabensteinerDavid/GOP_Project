@@ -8,7 +8,13 @@ class LineTest {
 
     @Test
     void testAreaBoundingLineHor() {
-        Line line = new Line(4,4,4,4);
+        Line line = new Line(4,4,6,4);
+        assertEquals(0,line.boundingBox().area());
+
+        line = new Line(4,4,6,6);
+        assertEquals(4,line.boundingBox().area());
+
+        line = new Line(4,4,4,4);
         assertEquals(0,line.boundingBox().area());
     }
 
