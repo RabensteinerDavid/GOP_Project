@@ -8,17 +8,17 @@ class CircleTest {
 
     @Test
     void testAreaCer() {
-        Circle cer = new Circle(0,0,42);
+        Circle cir = new Circle(0,0,42);
 
-        assertEquals(5541,cer.area());
-        assertNotEquals(123,cer.area());
+        assertEquals(5541,cir.area());
+        assertNotEquals(123,cir.area());
     }
 
     @Test
     void testBoundingCer() {
-        Circle cer = new Circle(0,0,2);
+        Circle cir = new Circle(0,0,2);
 
-        assertEquals(16,cer.boundingBox().area());
+        assertEquals(16,cir.boundingBox().area());
     }
 
     @Test

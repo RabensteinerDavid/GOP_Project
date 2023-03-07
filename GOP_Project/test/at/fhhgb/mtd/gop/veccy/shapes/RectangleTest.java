@@ -33,5 +33,36 @@ class RectangleTest {
         rec2 = new Rectangle(0,0,20,5);
 
         assertFalse(rec.isOverlapping(rec2));
+        assertFalse(rec2.isOverlapping(rec));
+
+        rec = new Rectangle(10,10,20,20);
+        rec2 = new Rectangle(15,5,5,20);
+
+        assertTrue(rec.isOverlapping(rec2));
+        assertTrue(rec2.isOverlapping(rec));
+
+        rec = new Rectangle(10,10,20,20);
+        rec2 = new Rectangle(20,22,20,5);
+
+        assertTrue(rec.isOverlapping(rec2));
+        assertTrue(rec2.isOverlapping(rec));
+
+        rec = new Rectangle(10,10,20,20);
+        rec2 = new Rectangle(15,20,5,20);
+
+        assertTrue(rec.isOverlapping(rec2));
+        assertTrue(rec2.isOverlapping(rec));
+
+        rec = new Rectangle(10,10,20,20);
+        rec2 = new Rectangle(0,22,20,5);
+
+        assertTrue(rec.isOverlapping(rec2));
+        assertTrue(rec2.isOverlapping(rec));
+
+        rec = new Rectangle(20,20,30,30);
+        rec2 = new Rectangle(30,30,10,10);
+
+        assertTrue(rec.isOverlapping(rec2));
+        assertTrue(rec2.isOverlapping(rec));
     }
 }
