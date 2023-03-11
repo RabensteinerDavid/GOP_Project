@@ -37,8 +37,8 @@ public class Veccy extends Application {
             System.out.println("Processing....(It may take a view seconds)");
             //man kann mit resizeRead angeben wie viele Pixel gelesen werden -> umso höher, umso schneller wird das Programm ausgeführt
             //man kann mit resizeWrite die Größe des neu errechneten Bildes angeben
-            //drawImg(stage, 4, 16, new File("./src/at/fhhgb/mtd/gop/veccy/image/v1.jpeg"));
-            drawImg(stage, 8, 16, new File("./src/at/fhhgb/mtd/gop/veccy/image/v2.jpeg"));
+            drawImg(stage, 4, 16, new File("./src/at/fhhgb/mtd/gop/veccy/image/v1.jpeg"));
+            //drawImg(stage, 8, 16, new File("./src/at/fhhgb/mtd/gop/veccy/image/v2.jpeg"));
             System.out.println("loaded");
         } else if (inp.equals("2")) {
             Circle cer = new Circle(140, 80, 80);
@@ -70,7 +70,7 @@ public class Veccy extends Application {
             for (int i = 0; i < 15; i++) {
                 int randomNumberA = random.nextInt(30) + 1;
                 int randomNumberZ = random.nextInt(3) + 0;
-                Rectangle rec5 = new Rectangle(-210 - i * 5, 320, 1, 2000, 40 + randomNumberA * 0.0625);
+                Rectangle rec5 = new Rectangle(-215 - i * 5, 320, 1, 2000, 40 + randomNumberA * 0.0625);
                 rec5.setFillColor(color2[randomNumberZ]);
                 rec5.setStrokeColor(color2[randomNumberZ]);
                 model.addShape(rec5);
