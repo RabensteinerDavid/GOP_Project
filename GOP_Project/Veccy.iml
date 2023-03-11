@@ -24,5 +24,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="openjfx.javafx.controls" level="project" />
+    <orderEntry type="library" name="Veccy-lib" level="project" />
   </component>
 </module>
