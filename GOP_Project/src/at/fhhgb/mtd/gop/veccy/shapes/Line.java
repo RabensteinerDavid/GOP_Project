@@ -18,17 +18,7 @@ public class Line extends Shape {
     }
 
     public Rectangle boundingBox() {
-//        if ((x1 < x2) && (y1 > y2)) {
-//            return new Rectangle(x1, y2, x2 - x1, y2 - y1);
-//        } else if ((x1 > x2) && (y1 < y2)) {
-//            return new Rectangle(x2, y1, x2 - x1, y2 - y1);
-//        } else if ((x1 < x2) && (y1 < y2)) {
-//            return new Rectangle(x1, y1, x2 - x1, y2 - y1);
-//        } else if ((x1 > x2) && (y1 > y2)) {
-//            return new Rectangle(x2, y2, x2 - x1, y2 - y1);
-//        } else {
-//            return new Rectangle(x1, y1, x2 - x1, y2 - y1);
-//        }
+
         int xMin = Math.min(super.getX(), x2);
         int xMax = Math.max(super.getX(), x2);
 
