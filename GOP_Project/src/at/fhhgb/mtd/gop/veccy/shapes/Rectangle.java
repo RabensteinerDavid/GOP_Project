@@ -1,49 +1,29 @@
 package at.fhhgb.mtd.gop.veccy.shapes;
 
+import at.fhhgb.mtd.gop.math.Vector3;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import javafx.scene.transform.Affine;
-import javafx.scene.transform.Rotate;
 
-public class Rectangle implements DrawableShape {
-    private int x;
-    private int y;
+public class Rectangle extends Shape {
     private int width;
     private int height;
     private double rotate = 0;
 
-    private Color fillColor = Color.RED;
-    private Color strokeColor = Color.BLUE;
-
     public Rectangle(int x, int y, int width, int height) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
         this.width = width;
         this.height = height;
     }
 
     public Rectangle(int x, int y, int width, int height, double rotate) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
         this.width = width;
         this.height = height;
         this.rotate = rotate;
     }
 
-    public Color getFillColor() {
-        return fillColor;
-    }
-
-    public void setFillColor(Color fillColor) {
-        this.fillColor = fillColor;
-    }
-
-    public Color getStrokeColor() {
-        return strokeColor;
-    }
-
-    public void setStrokeColor(Color strokeColor) {
-        this.strokeColor = strokeColor;
+    public void setHeiWid(int width, int height) {
+        this.height = height;
+        this.width = width;
     }
 
     public int area() {
@@ -51,33 +31,51 @@ public class Rectangle implements DrawableShape {
     }
 
     public Rectangle boundingBox() {
-        return new Rectangle(x, y, width, height);
+        return new Rectangle(super.getX(), super.getY(), width, height);
     }
 
     public boolean isOverlapping(Rectangle other) {
         //horizontal
-        if ((x <= other.x + other.width) && (x + width >= other.x)) {
+        if ((super.getX() <= other.getX() + other.width) && (super.getX() + width >= other.getX())) {
             //horizontal
-            if ((y <= other.y + other.height) && (y + height >= other.y)) {
+            if ((super.getY() <= other.getY() + other.height) && (super.getY() + height >= other.getY())) {
                 return true;
             }
         }
         return false;
     }
 
+    private double[][] getCoordinates() {
+        Vector3[] vec = new Vector3[]{
+                new Vector3(new double[]{super.getX(), super.getY(), 1}),
+                new Vector3(new double[]{super.getX() + width, super.getY(), 1}),
+                new Vector3(new double[]{super.getX() + width, super.getY() + height, 1}),
+                new Vector3(new double[]{super.getX(), super.getY() + height, 1})
+        };
+
+        Vector3[] trVec = calculateTranslation(vec, width, height);
+
+        double[][] cords = new double[3][trVec.length];
+
+        for (int i = 0; i < trVec.length; i++) {
+            cords[0][i] = trVec[i].getValues()[0]; // store x-coordinate in the first row
+            cords[1][i] = trVec[i].getValues()[1]; // store y-coordinate in the second row
+            cords[2][i] = trVec[i].getValues()[2]; // store z-coordinate in the third row
+        }
+
+        return cords;
+    }
+
     @Override
     public void draw(GraphicsContext graphicsContext) {
+        super.draw(graphicsContext);
 
-        double rotationCenterX = (x + width) / 2;
-        double rotationCenterY = (y + height) / 2;
-        graphicsContext.transform(new Affine(new Rotate(rotate, rotationCenterX, rotationCenterY)));
+        graphicsContext.fillRect(super.getX(), super.getY(), width, height); // Füllt ein Rechteck
+        graphicsContext.strokeRect(super.getX(), super.getY(), width, height); // Rand eines Rechtecks
 
-        graphicsContext.setFill(fillColor); // Setzt die Füllfarbe
-        graphicsContext.setStroke(strokeColor); // Setzt die Randfarbe
-        graphicsContext.fillRect(x, y, width, height); // Füllt ein Rechteck
-        graphicsContext.strokeRect(x, y, width, height); // Rand eines Rechtecks
-
-        graphicsContext.transform(new Affine(new Rotate(-rotate, rotationCenterX, rotationCenterY)));
+        double[][] coordinates = getCoordinates();
+        graphicsContext.fillPolygon(coordinates[0], coordinates[1], coordinates[0].length);
+        graphicsContext.strokePolygon(coordinates[0], coordinates[1], coordinates[0].length);
     }
 }
 

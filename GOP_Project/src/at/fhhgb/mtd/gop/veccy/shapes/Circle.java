@@ -1,58 +1,18 @@
 package at.fhhgb.mtd.gop.veccy.shapes;
 
+import at.fhhgb.mtd.gop.math.Vector3;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import javafx.scene.transform.Affine;
-import javafx.scene.transform.Rotate;
 
-public class Circle implements DrawableShape {
-
-    private int x;
-    private int y;
+public class Circle extends Shape {
     private int radius;
-    private int radiusX = 0;
-    private int radiusY = 0;
-
-    private int rotate = 0;
-
-    private Color fillColor = Color.RED;
-    private Color strokeColor = Color.BLUE;
-
-    public Color getFillColor() {
-        return fillColor;
-    }
-
-    public void setFillColor(Color fillColor) {
-        this.fillColor = fillColor;
-    }
-
-    public Color getStrokeColor() {
-        return strokeColor;
-    }
-
-    public void setStrokeColor(Color strokeColor) {
-        this.strokeColor = strokeColor;
-    }
 
     public Circle(int x, int y, int radius) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
         this.radius = radius;
     }
 
-    public Circle(int x, int y, int radiusX, int radiusY) {
-        this.x = x;
-        this.y = y;
-        this.radiusX = radiusX;
-        this.radiusY = radiusY;
-    }
-
-    public Circle(int x, int y, int radiusX, int radiusY,int rotate) {
-        this.x = x;
-        this.y = y;
-        this.radiusX = radiusX;
-        this.radiusY = radiusY;
-        this.rotate = rotate;
+    public void setRadius(int radius) {
+        this.radius = radius;
     }
 
     public int area() {
@@ -60,29 +20,43 @@ public class Circle implements DrawableShape {
     }
 
     public Rectangle boundingBox() {
-        return new Rectangle(x-radius, y-radius, radius*2,radius*2);
+        return new Rectangle(super.getX(), super.getY(), radius * 2, radius * 2);
+    }
+
+    private double[][] getCoordinates() {
+
+        int numberPoints = 255;
+
+        Vector3[] ptV1 = new Vector3[numberPoints];
+
+        double angleIncrement = 2 * Math.PI / numberPoints;
+
+        for (int i = 0; i < numberPoints; i++) {
+
+            double angle = i * angleIncrement;
+            double x = super.getX() + radius/2 * Math.cos(angle);
+            double y = super.getY() + radius/2 * Math.sin(angle);
+
+            ptV1[i] = new Vector3(new double[]{x, y, 1});
+        }
+
+        Vector3[] trVec = calculateTranslation(ptV1, radius, radius);
+
+        double[][] coordinates = new double[3][trVec.length];
+
+        for (int j = 0; j < trVec.length; j++) {
+            coordinates[0][j] = trVec[j].getValues()[0];
+            coordinates[1][j] = trVec[j].getValues()[1];
+            coordinates[2][j] = trVec[j].getValues()[2];
+        }
+        return coordinates;
     }
 
     @Override
     public void draw(GraphicsContext graphicsContext) {
-
-        double rotationCenterX = (x + radiusX) / 2;
-        double rotationCenterY = (y + radiusY) / 2;
-        graphicsContext.transform(new Affine(new Rotate(rotate, rotationCenterX, rotationCenterY)));
-
-
-        graphicsContext.setFill(fillColor); // Setzt die Füllfarbe
-        graphicsContext.setStroke(strokeColor); // Setzt die Randfarbe
-
-        if(radiusX!=0){
-            graphicsContext.fillOval(x, y, radiusX, radiusY); // Füllt ein Rechteck
-            graphicsContext.strokeOval(x, y, radiusX, radiusY); // Rand eines Rechtecks
-
-        }
-        else{
-            graphicsContext.fillOval(x, y, radius, radius); // Füllt ein Rechteck
-            graphicsContext.strokeOval(x, y, radius, radius); // Rand eines Rechtecks
-        }
-        graphicsContext.transform(new Affine(new Rotate(-rotate, rotationCenterX, rotationCenterY)));
+        super.draw(graphicsContext);
+        double[][] coordinates = getCoordinates();
+        graphicsContext.fillPolygon(coordinates[0], coordinates[1], coordinates[0].length);
+        graphicsContext.strokePolygon(coordinates[0], coordinates[1], coordinates[0].length);
     }
 }
