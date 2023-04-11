@@ -29,27 +29,22 @@ public class PathFeature implements NamedFeature {
     public void onDeselect() {
         System.out.println("Path Deselected");
         isSelected = false;
+        path = null;
     }
 
     //let go mouseclick
     @Override
     public void onMouseClick(int i, int i1) {
         if(isSelected) {
-
-            Path pathO = path;
-
-            if(pathO == null) {
-
+            if(path == null) {
                 path = new Path(i, i1);
-
-                path.setFillColor(model.getCurrentFillColor());
-                path.setStrokeColor(model.getCurrentStrokeColor());
-
-                model.addShape(path);
-
             } else {
-                pathO.addPath(i, i1);
+                path.addPath(i, i1);
             }
+            path.setFillColor(model.getCurrentFillColor());
+            path.setStrokeColor(model.getCurrentStrokeColor());
+
+            model.addShape(path);
         }
     }
 

@@ -2,26 +2,17 @@ package at.fhhgb.mtd.gop.veccy.shapes;
 
 import at.fhhgb.mtd.gop.math.Vector3;
 import javafx.scene.canvas.GraphicsContext;
-
 import java.util.LinkedList;
 
 public class Polygon extends Shape {
-
-    private static LinkedList<Vector3> polygonVector = new LinkedList<>();
-
-    int counter =0;
+    LinkedList<Vector3> polygonVector = new LinkedList<>();
 
     public Polygon(double x, double y) {
         super(x, y);
-        Vector3 vec = new Vector3(x, y);
-        polygonVector.add(vec);
+        polygonVector.add(position);
     }
 
-    public void clear(){
-        counter+=1;
-    }
-
-    public static double area(Polygon poly) {
+    public double area(Polygon poly) {
         int numPoints = polygonVector.size();
         double area = 0.0;
 
@@ -76,7 +67,7 @@ public class Polygon extends Shape {
         double[] x = new double[polygonVector.size()];
         double[] y = new double[polygonVector.size()];
 
-        for (int i = 0; i<polygonVector.size();i++) {
+        for (int i = 0; i < polygonVector.size();i++) {
             x[i] = polygonVector.get(i).getValues()[0];
             y[i] = polygonVector.get(i).getValues()[1];
         }

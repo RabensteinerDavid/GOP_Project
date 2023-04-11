@@ -28,25 +28,23 @@ public class PolygonFeature implements NamedFeature {
     @Override
     public void onDeselect() {
         System.out.println("Polygon Deselected");
+        poly = null;
         isSelected = false;
-        poly.clear();
     }
 
     //let go mouseclick
     @Override
     public void onMouseClick(int i, int i1) {
         if(isSelected) {
-            Polygon polygon = poly;
-            if(polygon == null) {
+            if(poly == null) {
                 poly = new Polygon(i, i1);
-
-                poly.setFillColor(model.getCurrentFillColor());
-                poly.setStrokeColor(model.getCurrentStrokeColor());
-
-                model.addShape(poly);
             } else {
-                polygon.addVector(i, i1);
+                poly.addVector(i, i1);
             }
+            poly.setFillColor(model.getCurrentFillColor());
+            poly.setStrokeColor(model.getCurrentStrokeColor());
+
+            model.addShape(poly);
         }
     }
 
