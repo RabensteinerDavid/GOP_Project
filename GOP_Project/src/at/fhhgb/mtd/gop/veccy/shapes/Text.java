@@ -12,15 +12,9 @@ public class Text extends Shape {
 
     private String text;
 
-    private double angle;
-
     public Text(double x, double y, String text) {
         super(x, y);
         this.text = text;
-    }
-
-    public void setAngle(double angle){
-        this.angle = angle;
     }
 
     public String getName(){
@@ -52,8 +46,6 @@ public class Text extends Shape {
     public void draw(GraphicsContext graphicsContext) {
         super.draw(graphicsContext);
         double[][] coordinates = getCoordinates();
-
-        graphicsContext.rotate(angle);
 
         graphicsContext.fillText(text, coordinates[0][0], coordinates[1][0]);
         graphicsContext.strokeText(text, coordinates[0][0], coordinates[1][0]);
