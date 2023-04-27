@@ -1,5 +1,10 @@
 package at.fhhgb.mtd.gop.math;
 
+/**
+ *
+ * @author David Rabensteiner, s2210238050 (Gruppe 1)
+ */
+
 public class TransformFactory {
     public static Matrix3 createTranslation(int deltaX, int deltaY) {
         return new Matrix3(new double[][]{

@@ -1,8 +1,12 @@
 package at.fhhgb.mtd.gop.veccy.shapes;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+
+/**
+ *
+ * @author David Rabensteiner, s2210238050 (Gruppe 1)
+ */
 
 class RectangleTest {
 

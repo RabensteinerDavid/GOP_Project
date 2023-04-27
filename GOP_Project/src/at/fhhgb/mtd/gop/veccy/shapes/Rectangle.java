@@ -3,6 +3,11 @@ package at.fhhgb.mtd.gop.veccy.shapes;
 import at.fhhgb.mtd.gop.math.Vector3;
 import javafx.scene.canvas.GraphicsContext;
 
+/**
+ *
+ * @author David Rabensteiner, s2210238050 (Gruppe 1)
+ */
+
 public class Rectangle extends Shape {
     private int width;
     private int height;
@@ -12,6 +17,10 @@ public class Rectangle extends Shape {
         super(x, y);
         this.width = width;
         this.height = height;
+    }
+
+    public String getName(){
+        return "Rectangle";
     }
 
     public Rectangle(int x, int y, int width, int height, double rotate) {
@@ -24,6 +33,14 @@ public class Rectangle extends Shape {
     public void setHeiWid(int width, int height) {
         this.height = height;
         this.width = width;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     public int area() {
@@ -45,7 +62,7 @@ public class Rectangle extends Shape {
         return false;
     }
 
-    private double[][] getCoordinates() {
+    public double[][] getCoordinates() {
         Vector3[] vec = new Vector3[]{
                 new Vector3(new double[]{super.getX(), super.getY(), 1}),
                 new Vector3(new double[]{super.getX() + width, super.getY(), 1}),
@@ -53,7 +70,7 @@ public class Rectangle extends Shape {
                 new Vector3(new double[]{super.getX(), super.getY() + height, 1})
         };
 
-        Vector3[] trVec = calculateTranslation(vec, width, height);
+        Vector3[] trVec = calculateTranslation(vec, width, height, getName());
 
         double[][] cords = new double[3][trVec.length];
 
@@ -70,8 +87,8 @@ public class Rectangle extends Shape {
     public void draw(GraphicsContext graphicsContext) {
         super.draw(graphicsContext);
 
-        graphicsContext.fillRect(super.getX(), super.getY(), width, height); // Füllt ein Rechteck
-        graphicsContext.strokeRect(super.getX(), super.getY(), width, height); // Rand eines Rechtecks
+//        graphicsContext.fillRect(super.getX(), super.getY(), width, height); // Füllt ein Rechteck
+//        graphicsContext.strokeRect(super.getX(), super.getY(), width, height); // Rand eines Rechtecks
 
         double[][] coordinates = getCoordinates();
         graphicsContext.fillPolygon(coordinates[0], coordinates[1], coordinates[0].length);

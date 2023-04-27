@@ -1,8 +1,13 @@
 package at.fhhgb.mtd.gop.math;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+/**
+ *
+ * @author David Rabensteiner, s2210238050 (Gruppe 1)
+ */
+
 
 class TransformFactoryTest {
 

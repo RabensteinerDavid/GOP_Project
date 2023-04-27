@@ -4,6 +4,11 @@ import at.fhhgb.mtd.gop.veccy.model.CanvasModel;
 import at.fhhgb.mtd.gop.veccy.model.NamedFeature;
 import at.fhhgb.mtd.gop.veccy.shapes.Circle;
 
+/**
+ *
+ * @author David Rabensteiner, s2210238050 (Gruppe 1)
+ */
+
 public class CircleFeature implements NamedFeature {
 
     private static Circle cir;
@@ -58,7 +63,7 @@ public class CircleFeature implements NamedFeature {
                 model.addShape(cir);
             }
         } else {
-            int distance = (int) (Math.sqrt((i - this.i) * (i - this.i) + (i1 - this.i1) * (i1 - this.i1)) / 2.4); // /2.4 for better usability
+            int distance = (int) (Math.sqrt((i - this.i) * (i - this.i) + (i1 - this.i1) * (i1 - this.i1)));
             cir.setRadius(distance);
         }
     }

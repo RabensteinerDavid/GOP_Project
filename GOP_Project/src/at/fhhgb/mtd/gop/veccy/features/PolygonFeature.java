@@ -4,6 +4,11 @@ import at.fhhgb.mtd.gop.veccy.model.CanvasModel;
 import at.fhhgb.mtd.gop.veccy.model.NamedFeature;
 import at.fhhgb.mtd.gop.veccy.shapes.Polygon;
 
+/**
+ *
+ * @author David Rabensteiner, s2210238050 (Gruppe 1)
+ */
+
 public class PolygonFeature implements NamedFeature {
 
     private static Polygon poly;
@@ -36,15 +41,18 @@ public class PolygonFeature implements NamedFeature {
     @Override
     public void onMouseClick(int i, int i1) {
         if(isSelected) {
-            if(poly == null) {
+            Polygon polygon= poly;
+            if(polygon == null) {
                 poly = new Polygon(i, i1);
-            } else {
-                poly.addVector(i, i1);
-            }
-            poly.setFillColor(model.getCurrentFillColor());
-            poly.setStrokeColor(model.getCurrentStrokeColor());
 
-            model.addShape(poly);
+                poly.setFillColor(model.getCurrentFillColor());
+                poly.setStrokeColor(model.getCurrentStrokeColor());
+
+                model.addShape(poly);
+            } else {
+                polygon.addVector(i, i1);
+            }
+
         }
     }
 

@@ -4,6 +4,11 @@ import at.fhhgb.mtd.gop.veccy.model.CanvasModel;
 import at.fhhgb.mtd.gop.veccy.model.NamedFeature;
 import at.fhhgb.mtd.gop.veccy.shapes.Path;
 
+/**
+ *
+ * @author David Rabensteiner, s2210238050 (Gruppe 1)
+ */
+
 public class PathFeature implements NamedFeature {
 
     private static Path path;
@@ -36,17 +41,21 @@ public class PathFeature implements NamedFeature {
     @Override
     public void onMouseClick(int i, int i1) {
         if(isSelected) {
-            if(path == null) {
+            Path path0= path;
+            if(path0 == null) {
                 path = new Path(i, i1);
-            } else {
-                path.addPath(i, i1);
-            }
-            path.setFillColor(model.getCurrentFillColor());
-            path.setStrokeColor(model.getCurrentStrokeColor());
 
-            model.addShape(path);
+                path.setFillColor(model.getCurrentFillColor());
+                path.setStrokeColor(model.getCurrentStrokeColor());
+
+                model.addShape(path);
+            } else {
+                path0.addPath(i, i1);
+            }
+
         }
     }
+
 
     @Override
     public void onMouseDrag(int i, int i1) {

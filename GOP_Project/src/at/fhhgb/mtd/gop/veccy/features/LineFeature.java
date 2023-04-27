@@ -4,6 +4,11 @@ import at.fhhgb.mtd.gop.veccy.model.CanvasModel;
 import at.fhhgb.mtd.gop.veccy.model.NamedFeature;
 import at.fhhgb.mtd.gop.veccy.shapes.Line;
 
+/**
+ *
+ * @author David Rabensteiner, s2210238050 (Gruppe 1)
+ */
+
 public class LineFeature implements NamedFeature {
 
     private static Line li;
@@ -58,7 +63,7 @@ public class LineFeature implements NamedFeature {
             }
         } else {
             li.setX2Y2(i, i1);
-            model.addShape(li);
+            //model.addShape(li);
         }
     }
 }

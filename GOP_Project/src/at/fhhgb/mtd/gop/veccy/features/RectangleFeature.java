@@ -4,6 +4,11 @@ import at.fhhgb.mtd.gop.veccy.model.CanvasModel;
 import at.fhhgb.mtd.gop.veccy.model.NamedFeature;
 import at.fhhgb.mtd.gop.veccy.shapes.Rectangle;
 
+/**
+ *
+ * @author David Rabensteiner, s2210238050 (Gruppe 1)
+ */
+
 public class RectangleFeature implements NamedFeature {
 
     private static Rectangle rec;
@@ -64,7 +69,7 @@ public class RectangleFeature implements NamedFeature {
             int yMax = Math.max(this.i1, i1);
 
             rec.setHeiWid(xMax - xMin, yMax - yMin);
-            model.addShape(rec);
+            //model.addShape(rec);
         }
     }
 }

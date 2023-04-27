@@ -3,12 +3,22 @@ package at.fhhgb.mtd.gop.veccy.shapes;
 import at.fhhgb.mtd.gop.math.Vector3;
 import javafx.scene.canvas.GraphicsContext;
 
+/**
+ *
+ * @author David Rabensteiner, s2210238050 (Gruppe 1)
+ */
+
+
 public class Circle extends Shape {
     private int radius;
 
     public Circle(int x, int y, int radius) {
         super(x, y);
         this.radius = radius;
+    }
+
+    public String getName(){
+        return "Circle";
     }
 
     public void setRadius(int radius) {
@@ -23,7 +33,7 @@ public class Circle extends Shape {
         return new Rectangle(super.getX(), super.getY(), radius * 2, radius * 2);
     }
 
-    private double[][] getCoordinates() {
+    public double[][] getCoordinates() {
 
         int numberPoints = 255;
 
@@ -34,13 +44,13 @@ public class Circle extends Shape {
         for (int i = 0; i < numberPoints; i++) {
 
             double angle = i * angleIncrement;
-            double x = super.getX() + radius/2 * Math.cos(angle);
-            double y = super.getY() + radius/2 * Math.sin(angle);
+            double x = super.getX() + radius * Math.cos(angle);
+            double y = super.getY() + radius  * Math.sin(angle);
 
             ptV1[i] = new Vector3(new double[]{x, y, 1});
         }
 
-        Vector3[] trVec = calculateTranslation(ptV1, radius, radius);
+        Vector3[] trVec = calculateTranslation(ptV1, radius*2, radius*2, getName());
 
         double[][] coordinates = new double[3][trVec.length];
 

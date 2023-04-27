@@ -5,11 +5,15 @@ import at.fhhgb.mtd.gop.veccy.model.NamedFeature;
 import at.fhhgb.mtd.gop.veccy.shapes.Text;
 import at.fhhgb.mtd.gop.veccy.view.BlockingTextInputDialog;
 
+/**
+ * @author David Rabensteiner, s2210238050 (Gruppe 1)
+ */
+
 public class TextFeature implements NamedFeature {
 
-    private String text;
     boolean isSelected = false;
     CanvasModel model;
+    private String text;
 
     public TextFeature(CanvasModel model) {
         this.model = model;
@@ -36,8 +40,9 @@ public class TextFeature implements NamedFeature {
     //let go mouseclick
     @Override
     public void onMouseClick(int i, int i1) {
-        if(isSelected && text != null) {
-            Text textS = new Text(i,i1, text);
+        if (isSelected && text != null) {
+
+            Text textS = new Text(i, i1, text);
 
             textS.setFillColor(model.getCurrentFillColor());
             textS.setStrokeColor(model.getCurrentStrokeColor());

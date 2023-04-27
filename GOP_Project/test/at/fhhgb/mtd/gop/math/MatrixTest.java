@@ -3,11 +3,14 @@ package at.fhhgb.mtd.gop.math;
 import at.fhhgb.mtd.gop.math.Matrix3;
 import at.fhhgb.mtd.gop.math.Vector3;
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/**
+ *
+ * @author David Rabensteiner, s2210238050 (Gruppe 1)
+ */
 
 class MatrixTest {
 

@@ -1,5 +1,9 @@
 package at.fhhgb.mtd.gop.math;
 
+/**
+ *
+ * @author David Rabensteiner, s2210238050 (Gruppe 1)
+ */
 
 public class Vector3 {
     private double[] values;
