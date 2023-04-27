@@ -69,7 +69,6 @@ public class TransformFeature implements NamedFeature {
             }catch (ArrayIndexOutOfBoundsException e){
                 System.out.println("No Shape available");
             }
-
         }
     }
 
